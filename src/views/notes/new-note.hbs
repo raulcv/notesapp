@@ -1,0 +1,22 @@
+<div class="col-md-4 mx-auto"><!--creando una tarjeta con de 4 columnas, mx-aout:centrado-->
+    <div class="card">
+    <div class="card-header">
+        <h1>New Notes</h1>
+    </div>
+    <div class="card-body">
+        <form action="/notes/new-note" method="POST">
+            <div class="form-group"> <!--Para que los imputs o contendio este separado-->
+                <input type="text" name="title" class="form-control" placeholder="Title" autofocus> <!--class="form-control": se adecua al tamano de pantalla-->
+            </div>
+            <div class="form-group">
+                <textarea name="description" class="form-control" placeholder="Description"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit"><!--btn-primary:color azul, btn-block: acupa todo ancho disponible-->
+                    save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
