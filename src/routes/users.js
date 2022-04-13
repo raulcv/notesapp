@@ -11,7 +11,7 @@ router.get('/users/signin', (req, res) => {
 router.post('/users/signin', passport.authenticate('local', {
     successRedirect: '/notes',
     failureRedirect: '/users/signin',
-    failureFlash: true
+    failureFlash: true,
 }));
 
 router.get('/users/signup', (req, res) => {

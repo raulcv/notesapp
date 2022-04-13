@@ -1,12 +1,13 @@
 const express = require('express');
 const path = require('path');
-const exphbs = require('express-handlebars');
-// import { engine } from 'express-handlebars';
+const expressHandlebars = require('express-handlebars');
+const handlebars = require('handlebars');
 const methOverride = require('method-override');
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-require('dotenv').config()
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+
 
 // Initialization
 const app = express();
@@ -17,22 +18,26 @@ require('./config/passport');
 app.set('port', process.env.PORT || 3000); //process.env.PORT si este puerto si existe en mi computador que use.
 app.set('views', path.join(__dirname, 'views')); //Para indicar a mi proyecto la carpeta views, donde estara los html o handlebard=hmtl solo que con algunas mejoras
 
-app.engine('.hbs', exphbs.engine({
+const hbs = expressHandlebars.create({
     defaultLayout: 'main',
-    layoutsDir: path.join(app.get('views'),'layouts'), //Para inidicar donde esta la carpeta layouts
-    partialsDir: path.join(app.get('views'),'partials'), //Son pequeñas partes de html, para utilizar varias veces en cada vista etc
-    extname: '.hbs' //Indico que todos mis archivos terminan en .hbs
-})); //Par decir de que modo voy a usar mis vistas, seccionar que frm es cambiantes y el principal.
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir: path.join(app.get('views'), 'partials'),
+    extname: '.hbs',
+    handlebars: allowInsecurePrototypeAccess(handlebars)
+});
 
+app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 // Middlewares
 app.use(express.urlencoded({extended: false})); //No voy a aceptar imgs
 app.use(methOverride('_method'));
 app.use(session({
-    secret: 'mysecretapp',
+    secret: process.env.SECRET_SESSION_KEY,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    // Timeout 1 hour
+    cookie: {maxAge: 1000 * 60 * 60}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
