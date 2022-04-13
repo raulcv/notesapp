@@ -7,7 +7,8 @@ see package.sjon for more information abou dependencies you need install
  2: open in code editor like Visual Studio code
  3: Install dependecnies
  3: write on console nmp run dev 
- 4: [open your it in your beowser](http://localhost:3000 "open your it in your beowser")
+ 
+[open your it in your beowser](http://localhost:3000 "open your it in your beowser")
 ------------
 
-Thanks for watching my repo
+Thanks for watching my repo.
