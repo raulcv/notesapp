@@ -14,7 +14,7 @@ see package.sjon for more information abou dependencies you need install.
 4: write on console nmp run dev.
  
 ------------
-[open your it in your beowser](https://github.com/raulcv/notesapp)
+[open your it in your browser](https://github.com/raulcv/notesapp)
 ------------
 
 Thanks for watching my repo.
