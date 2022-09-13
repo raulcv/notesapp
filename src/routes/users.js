@@ -48,7 +48,11 @@ router.post('/users/signup', async (req, res) => {
 });
 
 router.get('/users/logout', (req, res) => {
-    req.logOut();
-    res.redirect('/');
+    req.logout((err) => {
+        if (err) {
+            res.status(400).send('Unable to log out')
+        }
+        res.redirect('/');
+    });
 });
 module.exports = router;
